@@ -13,20 +13,13 @@ for (let i = 0; i < 49; i++) {
 }
 
 const childs = container.childNodes;
-// const btns = [...childs].filter((e) => {
-//     return e.type == 'button';
-// });
 
 childs.forEach((btn) => {
 
     btn.addEventListener("click", function (e) {
-        // chosen.innerHTML = chosen.innerHTML + e.target.innerHTML;
         var chnm = chosen.value.split(' ').map(function (item) {
             return parseInt(item, 10);
         });
-        // var arr = chnm.filter(function (c) {
-        //     return c != " " && c;
-        // })
         if (chosen.innerHTML.includes(e.target.innerHTML)) {
             return btn.disabled;
         }
@@ -58,18 +51,11 @@ button.addEventListener("click", function (e) {
         }
         if (counter == 7) break;
     }
-    console.log(lotto);
 
     output.innerHTML = lotto;
 
 });
 let finalarray = [];
-// function compare(chosen.value.split(' ').map(function (item) {
-//     return parseInt(item, 10)
-// }), lotto) {
-//     let finalarray = [];
-
-
 
 var check = document.querySelector('#check')
 
@@ -83,17 +69,13 @@ check.addEventListener('click', (e) => {
             finalarray.push(l);
         }
     });
-    // });
-
 
     const titleAnswer = document.createElement('p');
     titleAnswer.innerHTML = 'Trafiłeś następujące liczby: '
-    // titleAnswer.setAttribute('class', 'myFinalOutput');
     titleAnswer.className = 'myFinalOutput';
     const myOutput = document.createElement('p');
     myOutput.innerHTML = finalarray;
     myOutput.className = 'myOutput';
-
 
     if (chosen.value.split(' ').length == 7 && lotto.length == 6) {
 
@@ -115,40 +97,3 @@ newGame.addEventListener("click", function () {
     lotto.innerHTML = [];
     finalarray.innerHTML = [];
 });
-
-
-
-
-// answer.innerHTML = finalarray;
-// function compare(arr1, arr2) {
-//     const finalarray = [];
-//     chosen.value.split(' ').map(function (item) {
-//         return parseInt(item, 10);
-//     }).forEach((e1) => lotto.forEach((e2) => {
-//         if (e1 === e2) {
-//             finalarray.push(e1)
-//         }
-//     }
-//     ));
-//     return finalarray;
-// };
-
-
-
-// chosen.value.split(' ').map(function (item) {
-//     return parseInt(item, 10);
-// }).forEach(e => {
-//     lotto.includes(e);
-
-// })
-
-// output.innerHTML = output.innerHTML + (Math.floor(Math.random() * 8 + 2));
-// };
-
-
-// const container = document.querySelector('.myButtonContainer');
-// for (let i = 0; i < 49; i++) {
-//     const el = document.createElement('button');
-//     el.innerHTML = i + 1;
-//     container.appendChild(el);
-// }
