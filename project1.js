@@ -13,18 +13,17 @@ for (let i = 0; i < 49; i++) {
 }
 
 const childs = container.childNodes;
-
+const clickedElements = [];
 childs.forEach((btn) => {
 
     btn.addEventListener("click", function (e) {
-        var chnm = chosen.value.split(' ').map(function (item) {
-            return parseInt(item, 10);
-        });
-        if (chosen.innerHTML.includes(e.target.innerHTML)) {
-            return btn.disabled;
+        console.log(clickedElements);
+        if (clickedElements.includes(e.target.innerText)) {
+            return; //return null
         }
 
-        if (chnm.length <= 6) {
+        if (clickedElements.length < 6) {
+            clickedElements.push(e.target.innerText);
             chosen.innerHTML = chosen.innerHTML + e.target.innerText + " ";
         }
     });
@@ -32,7 +31,8 @@ childs.forEach((btn) => {
 
 var clean = document.querySelector("#clean");
 clean.addEventListener("click", function (e) {
-    return chosen.innerHTML = [];
+    clickedElements.length = 0;
+    chosen.innerHTML = [];
 });
 
 var button = document.querySelector("#button");
@@ -70,10 +70,10 @@ check.addEventListener('click', (e) => {
         }
     });
 
-    const titleAnswer = document.createElement('p');
+    let titleAnswer = document.createElement('p');
     titleAnswer.innerHTML = 'Trafiłeś następujące liczby: '
     titleAnswer.className = 'myFinalOutput';
-    const myOutput = document.createElement('p');
+    let myOutput = document.createElement('p');
     myOutput.innerHTML = finalarray;
     myOutput.className = 'myOutput';
 
@@ -89,11 +89,38 @@ check.addEventListener('click', (e) => {
     if (cnt !== 1) {
         e.target.setAttribute("disabled", true);
     }
+    // if (finallarray.length === 0) {
+    //     var t = document.createTextNode("Przykro mi, nie trafiłeś!");
+    //     document.appendChild(t);
+    // }
 });
 
 
 newGame.addEventListener("click", function () {
     chosen.innerHTML = [];
-    lotto.innerHTML = [];
-    finalarray.innerHTML = [];
+    output.innerHTML = [];
+    clickedElements.length = 0;
+    const el = document.querySelector('.answer');
+    let elementsToRemove = [];
+
+    const tablica = ['a', 'b', 'c'];
+    for (let elementtablicy of tablica) {
+        console.log(elementtablicy)
+    }
+    console.log('-------------------------')
+    for (let indextablicy in tablica) {
+        console.log(indextablicy)
+        console.log(tablica[indextablicy])
+    }
+
+    for (let item of el.children) {
+        if (item.nodeName != 'BUTTON') elementsToRemove.push(item);
+    }
+    if (elementsToRemove.length == 2) {
+        el.removeChild(elementsToRemove[0]);
+        el.removeChild(elementsToRemove[1]);
+    }
+
+    check.removeAttribute("disabled", true);
+
 });
